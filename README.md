@@ -93,7 +93,7 @@ fig up
 For testing local changes you need to build docker image:
 
 ```bash
-docker build -t nvbn/subman .
+docker build -t submanio/subman .
 ```
 
 ## Major migrations
