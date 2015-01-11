@@ -9,6 +9,8 @@
             [subman.parser.sources.subscene :refer [subscene-source]]
             [subman.parser.sources.notabenoid :refer [notabenoid-source]]
             [subman.parser.sources.uksubtitles :refer [uksubtitles-source]]
+            [subman.parser.base :refer [download-enabled? get-subtitles
+                                        get-htmls-for-parse make-url]]
             [subman.models :as models]
             [subman.const :as const]
             [subman.helpers :as helpers :refer [defsafe]]))
@@ -26,8 +28,8 @@
 (defn- get-new-for-page
   "Get new subtitles for page"
   [source checker page]
-  (for [{:keys [content url]} (.get-htmls-for-parse source page)
-        subtitle (.get-subtitles source content url)
+  (for [{:keys [content url]} (get-htmls-for-parse source page)
+        subtitle (get-subtitles source content url)
         :when (checker subtitle)]
     subtitle))
 
@@ -37,20 +39,22 @@
   (let [result (async/chan)]
     (async/thread
       (async/go-loop [page 1]
-                     (when (<= page const/update-deep)
-                       (if-let [page-result (seq (get-new-for-page source
-                                                                   checker page))]
-                         (do (doseq [subtitle page-result]
-                               (>! result subtitle))
-                             (recur (inc page)))
-                         (async/close! result)))))
+        (when (<= page const/update-deep)
+          (if-let [page-result (seq (get-new-for-page source
+                                                      checker page))]
+            (do (doseq [subtitle page-result]
+                  (>! result subtitle))
+                (recur (inc page)))
+            (async/close! result)))))
     result))
 
 (defn load-new-subtitles
   "Receive update from all sources"
   []
-  (let [ch (async/merge (map #(get-new-subtitles-in-chan % (complement models/in-db))
-                             (get-dep :sources)))
+  (let [sources (get-dep :sources)
+        enabled-sources (filter download-enabled? sources)
+        ch (async/merge (map #(get-new-subtitles-in-chan % (complement models/in-db))
+                             enabled-sources))
         update-id (gensym)]
     (log/info (str "Start update " update-id))
     (loop [i 0]
@@ -63,7 +67,7 @@
 
 (defsafe crawl-handler
   [source {:keys [body url]}]
-  (doseq [subtitle (.get-subtitles @source body url)
+  (doseq [subtitle (get-subtitles @source body url)
           :when (not (models/in-db subtitle))]
     (models/create-document! subtitle)))
 
@@ -71,7 +75,7 @@
   "Load all subtitles from all pages"
   []
   (doseq [source (get-dep :sources)]
-    (crawl {:url (.make-url source "/")
+    (crawl {:url (make-url source "/")
             :workers const/crawl-workers
             :url-limit const/crawl-limit
             :host-limit true
