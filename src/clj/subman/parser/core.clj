@@ -13,7 +13,7 @@
                                         get-htmls-for-parse make-url]]
             [subman.models :as models]
             [subman.const :as const]
-            [subman.helpers :as helpers :refer [defsafe]]))
+            [subman.helpers :refer [defsafe]]))
 
 (defn inject!
   "Inject sources as a dependency."
