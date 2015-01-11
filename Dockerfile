@@ -3,6 +3,7 @@ MAINTAINER Vladimir Iakovlev <nvbn.rm@gmail.com>
 
 RUN adduser --disabled-password --gecos "" subman
 RUN adduser subman sudo
+RUN echo "subman ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 ENV "VERSION" 2015_01_12_02_16
 
