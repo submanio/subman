@@ -6,7 +6,7 @@
 
 (defcomponent edit-option [option _]
   (display-name [_] "Edit Option")
-  (render [_] (html [:select.edit-option.form-control
+  (render [_] (html [:select.edit-option
                      {:value (:value option)
                       :on-change #(om/update! option :value (value %))}
                      (let [vals (:options option)]

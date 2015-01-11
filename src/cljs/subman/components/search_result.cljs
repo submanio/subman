@@ -7,8 +7,8 @@
 (defn search-resul-list
   "Render search result when something found"
   [results]
-  (html [:div.container.col-xs-12.search-result-holder
-         [:div.search-result.search-result-list.list-group
+  (html [:div.search-result-holder
+         [:div.search-result-list
           (map-indexed #(om/build result-entry %2
                                   {:react-key (str "search-result-" %1)})
                        results)]]))
@@ -16,7 +16,7 @@
 (defn info-box
   "Render information box in search result"
   [text]
-  (html [:div.container.col-xs-12.info-box
+  (html [:div.search-info
          [:h2 text]]))
 
 (defcomponent search-result [{:keys [stable-search-query results in-progress]} _]

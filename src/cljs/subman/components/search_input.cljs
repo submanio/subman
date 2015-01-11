@@ -19,18 +19,18 @@
 
 (defn icon-part
   [app]
-  (html [:span.input-group-addon.no-border-radius
+  (html [:span.search-icon-box
          (if (= "" (:search-query app))
-           [:i.fa.fa-search]
-           [:a.clear-input-btn {:on-click (fn [e]
+           [:i.search-icon]
+           [:a.clear-input {:on-click (fn [e]
                                             (.preventDefault e)
                                             (om/update! app :search-query ""))
                                 :href "#"}
-            [:i.fa.fa-chevron-left]])]))
+            [:i.back-icon]])]))
 
 (defn input-field-part
   [app]
-  (html [:input.search-input.form-control.no-border-radius
+  (html [:input.search-input
          {:on-change #(om/update! app :search-query (value %))
           :value (:search-query app)
           :placeholder "Type search query"
@@ -38,7 +38,7 @@
 
 (defcomponent search-input [app owner]
   (display-name [_] "Search Input")
-  (render [_] (html [:div.input-group.input-group-lg.col-xs-12.search-input-box
+  (render [_] (html [:div.search-input-box
                      {:data-spy "affix"
                       :data-offset-top "40"}
                      (icon-part app)

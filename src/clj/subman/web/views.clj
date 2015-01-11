@@ -9,31 +9,25 @@
 
 (def debug-js
   ["components/jquery/dist/jquery.js"
-   "components/bootstrap/dist/js/bootstrap.js"
    "components/typeahead.js/dist/typeahead.jquery.js"
+   "components/bootstrap-sass-official/assets/javascripts/bootstrap.js"
    "components/react/react.js"
    "cljs-target/goog/base.js"
    "main.js"])
 
 (def production-js
   ["components/jquery/dist/jquery.min.js"
-   "components/bootstrap/dist/js/bootstrap.min.js"
+   "components/bootstrap-sass-official/assets/javascripts/bootstrap.js"
    "components/typeahead.js/dist/typeahead.jquery.min.js"
    "components/react/react.min.js"
    "main.js"])
 
 (def debug-css
-  ["components/bootstrap/dist/css/bootstrap.css"
-   "components/bootstrap/dist/css/bootstrap-theme.css"
-   "components/font-awesome/css/font-awesome.css"
-   "components/typeahead.js-bootstrap3.less/typeahead.css"
+  ["components/typeahead.js-bootstrap3.less/typeahead.css"
    "main.css"])
 
 (def production-css
-  ["components/bootstrap/dist/css/bootstrap.min.css"
-   "components/bootstrap/dist/css/bootstrap-theme.min.css"
-   "components/font-awesome/css/font-awesome.min.css"
-   "components/typeahead.js-bootstrap3.less/typeahead.css"
+  ["components/typeahead.js-bootstrap3.less/typeahead.css"
    "main.css"])
 
 (defn get-ga-code

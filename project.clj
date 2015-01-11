@@ -13,7 +13,6 @@
                            [clj-http "1.0.1"]
                            [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                            [overtone/at-at "1.2.0"]
-                           [garden "1.2.5"]
                            [ring "1.3.2"]
                            [swiss-arrows "1.0.0"]
                            [jayq "2.5.2"]
@@ -35,7 +34,6 @@
                            [com.cemerick/piggieback "0.1.4"]]
             :plugins [[lein-cljsbuild "1.0.3"]
                       [com.keminglabs/cljx "0.5.0" :exclusions [org.clojure/clojure]]
-                      [lein-garden "0.2.1"]
                       [lein-environ "1.0.0"]
                       [lein-ring "0.8.11"]
                       [lein-ancient "0.5.5"]
@@ -56,7 +54,7 @@
                                                                  "resources/public/components/es5-shim/es5-shim.js"
                                                                  "resources/public/components/es5-shim/es5-sham.js"
                                                                  "resources/public/components/jquery/dist/jquery.js"
-                                                                 "resources/public/components/bootstrap/dist/js/bootstrap.js"
+                                                                 "resources/public/components/bootstrap-sass-official/assets/javascripts/bootstrap.js"
                                                                  "resources/public/components/typeahead.js/dist/typeahead.jquery.js"
                                                                  "resources/public/components/react/react-with-addons.js"
                                                                  "target/cljs-test.js"]}}
@@ -71,7 +69,7 @@
                              :jvm-opts ["-Xss16m"]}
                        :production {:cljsbuild {:builds [{:source-paths ["src/cljs" "target/generated-cljs"]
                                                           :compiler {:externs ["resources/public/components/jquery/dist/jquery.min.js"
-                                                                               "resources/public/components/bootstrap/dist/js/bootstrap.min.js"
+                                                                               "resources/public/components/bootstrap-sass-official/assets/javascripts/bootstrap.js"
                                                                                "resources/public/components/typeahead.js/dist/typeahead.jquery.min.js"
                                                                                "resources/public/components/react/react.min.js"]
                                                                      :output-to "resources/public/main.js"
@@ -92,13 +90,10 @@
                             {:source-paths ["src/cljx"]
                              :output-path "target/generated-cljs"
                              :rules :cljs}]}
-            :garden {:builds [{:source-paths ["src/clj"]
-                               :stylesheet subman.web.style/main
-                               :compiler {:output-to "resources/public/main.css"}}]}
             :ring {:handler subman.handlers/app
                    :init subman.handlers/init}
             :bower {:directory "resources/public/components"}
-            :bower-dependencies [["bootstrap" "3.2.0"]
+            :bower-dependencies [["bootstrap-sass-official" "3.3.1"]
                                  ["font-awesome" "4.2.0"]
                                  ["jquery" "2.1.1"]
                                  ["typeahead.js" "0.10.5"]

@@ -19,11 +19,11 @@
             (<! (timeout 1000))
             (is (= (:search-query @state) "test")))
           (testing "show back button with query"
-            (is (re-find #"chevron-left" (.html $el))))
+            (is (re-find #"back-icon" (.html $el))))
           (testing "clear input on click"
-            (h/simulate (h/get-by-class owner "clear-input-btn") :click)
+            (h/simulate (h/get-by-class owner "clear-input") :click)
             (<! (timeout 1000))
             (is (= (:search-query @state) "")))
           (testing "show search icon without query"
-            (is (re-find #"fa-search" (.html $el))))
+            (is (re-find #"search-icon" (.html $el))))
           (done)))))

@@ -6,7 +6,7 @@
 
 (defcomponent welcome [{:keys [total-count options]} _]
   (display-name [_] "Welcome")
-  (render [_] (html [:div.welcome.container.col-xs-12.info-box.form-inline
+  (render [_] (html [:div.welcome
                      [:h2 "Welcome to subman.io!"]
                      [:p "We index "
                       [:a {:href "http://www.addic7ed.com/"
@@ -44,15 +44,15 @@
                      [:p
                       [:a {:href "https://chrome.google.com/webstore/detail/submanio-for-chrome/dgbmdkdhhigobcaigjgbcnpgohdogbfn"
                            :target "_blank"}
-                       [:i.fa.fa-puzzle-piece]
+                       [:i.extension-icon]
                        " Download chrome extension"]]
                      [:p
                       [:a {:href "https://github.com/nvbn/subman"
                            :target "_blank"}
-                       [:i.fa.fa-github]
+                       [:i.github-icon]
                        " Sources"]
                       " "
                       [:a {:href "https://github.com/nvbn/subman-chrome"
                            :target "_blank"}
-                       [:i.fa.fa-github]
+                       [:i.github-icon]
                        " Extension sources"]]])))

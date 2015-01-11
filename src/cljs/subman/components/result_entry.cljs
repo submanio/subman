@@ -38,7 +38,7 @@
 
 (defcomponent result-entry [entry _]
   (display-name [_] "Result Entry")
-  (render [_] (html [:a.result-entry.list-group-item.search-result
+  (render [_] (html [:a.result-entry
                      {:href (:url entry)
                       :target "_blank"}
                      [:h3 (get-result-entry-title entry)
