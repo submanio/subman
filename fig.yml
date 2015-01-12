@@ -29,11 +29,16 @@ web:
   expose:
     - "3000"
   command: bash deploy/scripts/run_web.sh
+prerender:
+  image: submanio/prerender
+  links:
+    - web
 nginx:
   image: submanio/nginx
   domainname: subman.io
   links:
     - web
+    - prerender
   volumes:
     - deploy/logs/nginx:/var/log/nginx
   volumes_from:

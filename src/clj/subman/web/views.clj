@@ -8,7 +8,9 @@
             [subman.models :refer [unique-show-season-episode]]))
 
 (def debug-js
-  ["components/jquery/dist/jquery.js"
+  ["components/es5-shim/es5-shim.js"
+   "components/es5-shim/es5-sham.js"
+   "components/jquery/dist/jquery.js"
    "components/typeahead.js/dist/typeahead.jquery.js"
    "components/bootstrap-sass-official/assets/javascripts/bootstrap.js"
    "components/react/react.js"
@@ -16,7 +18,9 @@
    "main.js"])
 
 (def production-js
-  ["components/jquery/dist/jquery.min.js"
+  ["components/es5-shim/es5-shim.js"
+   "components/es5-shim/es5-sham.js"
+   "components/jquery/dist/jquery.min.js"
    "components/bootstrap-sass-official/assets/javascripts/bootstrap.js"
    "components/typeahead.js/dist/typeahead.jquery.min.js"
    "components/react/react.min.js"
@@ -57,6 +61,8 @@
             [:link {:type "application/opensearchdescription+xml"
                     :rel "search"
                     :href (first (make-static "opensearch.xml"))}]
+            [:meta {:name "fragment"
+                    :content "!"}]
             [:title "Subman - subtitle search service"]
             (apply as-static include-css (if is-debug
                                            debug-css
