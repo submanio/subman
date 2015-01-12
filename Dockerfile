@@ -12,7 +12,7 @@ RUN apt-get upgrade -yqq
 RUN apt-get install software-properties-common python-software-properties -yqq --no-install-recommends
 RUN add-apt-repository ppa:chris-lea/node.js  -y
 RUN apt-get update -yqq
-RUN apt-get install nodejs ruby openjdk-7-jdk curl -yqq --no-install-recommends
+RUN apt-get install nodejs ruby openjdk-7-jdk curl git -yqq --no-install-recommends
 RUN npm install -g bower
 RUN gem install sass
 RUN curl -s https://raw.githubusercontent.com/technomancy/leiningen/2.5.0/bin/lein > /usr/local/bin/lein
