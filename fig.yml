@@ -11,7 +11,7 @@ mongodb:
     - "27017"
   volumes:
     - deploy/data/mongodb:/data/db
-parser: &SUBMAN
+parser:
   image: submanio/subman
   links:
     - elasticsearch
@@ -25,10 +25,15 @@ parser: &SUBMAN
     RAW_DB_PORT: "27017"
     RAW_DB_NAME: "subman7"
 web:
-  <<: *SUBMAN
+  image: submanio/subman-web
+  links:
+    - elasticsearch
   expose:
     - "3000"
-  command: bash deploy/scripts/run_web.sh
+  environment:
+    DB_HOST: "http://elasticsearch:9200"
+    INDEX_NAME: "subman7"
+    IS_DEBUG: "false"
 prerender:
   image: submanio/prerender
   links:
