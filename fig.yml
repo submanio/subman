@@ -12,7 +12,7 @@ mongodb:
   volumes:
     - deploy/data/mongodb:/data/db
 parser:
-  image: submanio/subman
+  image: submanio/subman-parser
   links:
     - elasticsearch
     - mongodb
