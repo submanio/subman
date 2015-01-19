@@ -1,8 +1,12 @@
-# [subman.io](http://subman.io/) [![Build Status](https://travis-ci.org/submanio/subman.svg)](https://travis-ci.org/submanio/subman)
+# [subman.io](http://subman.io/)
 
 Service for fast subtitle searching.
 
 [Chrome extension sources.](https://github.com/nvbn/subman-chrome)
+
+[Web application sources.](https://github.com/nvbn/subman-web)
+
+[Parser sources.](https://github.com/nvbn/subman-parser)
 
 ## Api
 
@@ -38,61 +42,12 @@ You can get total subtitles count in:
 
 For decoding api response you should use [transit](https://github.com/cognitect/transit-format).
 
-## Installation
-
-First you need to install lein, bower, mongodb and elasticsearch.
-
-Then install deps:
-
-```bash
-lein deps
-lein bower install
-```
-
-Prepare assets:
-
-```bash
-lein cljsbuild once dev
-lein cljx
-lein garden once
-```
-
-And run with:
-
-```bash
-lein run
-```
-
-For building jar run:
-
-```bash
-lein with-profile production ring uberjar
-```
-
-For running server side tests run:
-
-```bash
-lein test
-```
-
-For client side test install phantomjs and run:
-
-```bash
-lein cljsbuild test
-```
-
 ## Deploy
 
 For running:
 
 ```bash
 fig up
-```
-
-For testing local changes you need to build docker image:
-
-```bash
-docker build -t submanio/subman .
 ```
 
 ## Major migrations
