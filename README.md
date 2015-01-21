@@ -47,7 +47,7 @@ For decoding api response you should use [transit](https://github.com/cognitect/
 For running:
 
 ```bash
-fig up
+fig up web parser
 ```
 
 ## Major migrations
@@ -57,13 +57,11 @@ fig up
 In separate shells run:
 
 ```bash
-fig up elasticsearch mongodb
-fig run web lein repl
+fig run maintain
 ```
 
 And execute in REPL:
 
 ```clojure
-(require '[subman.migrations :refer [from-index-to-raw-db!]])
 (from-index-to-raw-db!)
 ```

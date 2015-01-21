@@ -16,7 +16,6 @@ parser:
   links:
     - elasticsearch
     - mongodb
-  command: bash deploy/scripts/run_parser.sh
   environment:
     DB_HOST: "http://elasticsearch:9200"
     INDEX_NAME: "subman7"
@@ -50,3 +49,14 @@ nginx:
     - web
   ports:
     - "8080:80"
+maintain:
+  image: submanio/subman-maintain
+  links:
+    - elasticsearch
+    - mongodb
+  environment:
+    DB_HOST: "http://elasticsearch:9200"
+    INDEX_NAME: "subman7"
+    RAW_DB_HOST: "mongodb"
+    RAW_DB_PORT: "27017"
+    RAW_DB_NAME: "subman7"
