@@ -2,11 +2,11 @@
 
 Service for fast subtitle searching.
 
-[Chrome extension sources.](https://github.com/nvbn/subman-chrome)
+[Chrome extension sources.](https://github.com/subman/subman-chrome)
 
-[Web application sources.](https://github.com/nvbn/subman-web)
+[Web application sources.](https://github.com/subman/subman-web)
 
-[Parser sources.](https://github.com/nvbn/subman-parser)
+[Parser sources.](https://github.com/subman/subman-parser)
 
 ## Api
 
@@ -47,7 +47,7 @@ For decoding api response you should use [transit](https://github.com/cognitect/
 For running:
 
 ```bash
-fig up web parser
+docker-compose up web parser nginx
 ```
 
 ## Major migrations
@@ -57,7 +57,7 @@ fig up web parser
 In separate shells run:
 
 ```bash
-fig run maintain
+docker-compose run maintain
 ```
 
 And execute in REPL:
