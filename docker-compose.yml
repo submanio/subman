@@ -48,7 +48,7 @@ nginx:
   volumes_from:
     - web
   ports:
-    - "8080:80"
+    - "80:80"
 maintain:
   image: submanio/subman-maintain
   links:
